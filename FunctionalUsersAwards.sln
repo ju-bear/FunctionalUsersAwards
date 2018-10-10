@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunctionalUsersAwards.ConsoleUI", "FunctionalUsersAwards.ConsoleUI\FunctionalUsersAwards.ConsoleUI.fsproj", "{77F0E2B8-D471-4563-BBDD-F072C3AAD830}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunctionalUsersAwards.Domain", "FunctionalUsersAwards.Domain\FunctionalUsersAwards.Domain.fsproj", "{7EEAC556-E31E-4CAC-9DFC-E277887BB57C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{77F0E2B8-D471-4563-BBDD-F072C3AAD830}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77F0E2B8-D471-4563-BBDD-F072C3AAD830}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77F0E2B8-D471-4563-BBDD-F072C3AAD830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EEAC556-E31E-4CAC-9DFC-E277887BB57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EEAC556-E31E-4CAC-9DFC-E277887BB57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EEAC556-E31E-4CAC-9DFC-E277887BB57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EEAC556-E31E-4CAC-9DFC-E277887BB57C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="UtilityTypes.fs" />
+      <Compile Include="AdditionalTypes.fs" />
+      <Compile Include="MainTypes.fs" />
+    </ItemGroup>
+
+</Project>
