@@ -10,4 +10,3 @@ type Username = Username of NonEmptyString
 type AwardId = AwardId of Guid
 
 type AwardTitle = AwardTitle of NonEmptyString
-

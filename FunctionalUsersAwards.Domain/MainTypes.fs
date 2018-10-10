@@ -11,4 +11,3 @@ type User = {
     Username: Username
     Awards: Award list
 }
-
