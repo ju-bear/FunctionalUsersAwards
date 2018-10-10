@@ -29,7 +29,7 @@ module User =
                                               | Ok v -> accum |> Result.map (fun x -> v :: x)
                                               | Error err -> match accum with
                                                              | Ok _ -> [value |> fst, err] |> Error
-                                                             | Error v1 -> [value |> fst, err] @ v1 |> Error
+                                                             | Error accumError -> [value |> fst, err] @ accumError |> Error
                                                                         
     let private createAwardList (createAward: AwardDto -> Result<Award, AwardError list>) (list: AwardDto list) = 
         list 
