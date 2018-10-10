@@ -9,6 +9,8 @@ module NonEmptyString =
                      
     let getValue (NonEmptyString str) = str
     
+    let length (NonEmptyString str) = String.length str
+    
 module Result =
     let (>>=) s f = Result.bind f s
     let apply f s = match f, s with
