@@ -9,4 +9,5 @@ type AwardDto = {
 type UserDto = {
     Id: Guid
     Username: string
+    Awards: AwardDto list
 }
