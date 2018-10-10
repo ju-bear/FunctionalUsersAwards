@@ -5,7 +5,9 @@ open UtilityTypes
 
 type UserId = UserId of Guid
 
-type UsernameError = UsernameEmptyError | UsernameTooLongError of int 
+type UsernameError = UsernameEmptyError | UsernameTooLongError of int
+
+type AwardTitleError = AwardTitleEmptyError | AwardTitleTooLongError of int 
 
 module UserId =
     let create() = Guid.NewGuid >> UserId
@@ -36,3 +38,15 @@ module AwardId =
     let getValue (AwardId id) = id
 
 type AwardTitle = AwardTitle of NonEmptyString
+
+module AwardTitle =
+    let validate maxLength str = if NonEmptyString.length str > maxLength
+                                 then NonEmptyString.length str |> AwardTitleTooLongError |> Error
+                                 else Ok str
+                                 
+    let create validate str = NonEmptyString.create str
+                              |> Option.optionToResult AwardTitleEmptyError
+                              |> Result.bind validate
+                              |> Result.map AwardTitle
+                              
+    let getValue (AwardTitle str) = str
