@@ -20,6 +20,9 @@ module Result =
                     | Error f, Error s -> Error (f @ s)
     let (<*>) f s = apply f s
     let (<!>) f s = Result.map f s
+    let flatten v = match v with
+                    | Ok res -> res
+                    | Error err -> Error err
     
 module Option = 
     let (>>=) s f = Option.bind f s
