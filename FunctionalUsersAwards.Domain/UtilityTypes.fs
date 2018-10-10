@@ -21,4 +21,4 @@ module Result =
     
 module Option = 
     let (>>=) s f = Option.bind f s
-    let optionToResult error opt = Option.defaultValue error opt 
+    let optionToResult error opt = opt |> Option.map Ok |> Option.defaultValue (Error error) 
