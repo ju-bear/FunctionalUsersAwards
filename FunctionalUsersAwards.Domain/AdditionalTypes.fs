@@ -2,6 +2,7 @@ module AdditionalTypes
 
 open System
 open UtilityTypes
+open Dto
 
 type AwardId = AwardId of Guid
 
@@ -13,7 +14,7 @@ type UserId = UserId of Guid
 
 type UsernameError = UsernameEmptyError | UsernameTooLongError of int 
 
-type UserError = UsernameError of UsernameError | AwardListError of AwardError list
+type UserError<'a> = UsernameError of UsernameError | AwardListError of ('a * AwardError list) list
 
 module AwardId = 
     let create() = Guid.NewGuid >> AwardId

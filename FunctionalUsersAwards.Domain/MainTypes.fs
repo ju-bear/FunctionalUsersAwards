@@ -25,19 +25,19 @@ type User = {
 module User = 
     let createFromDomain id username awards = { Id = id; Username = username; Awards = awards }
     
-    let private processOneAward accum value = match value with
+    let private processOneAward accum value = match value |> snd with
                                               | Ok v -> accum |> Result.map (fun x -> v :: x)
                                               | Error err -> match accum with
-                                                             | Error v1 -> Error (err @ v1)
-                                                             | Ok _ -> Error err
+                                                             | Ok _ -> [value |> fst, err] |> Error
+                                                             | Error v1 -> [value |> fst, err] @ v1 |> Error
                                                                         
-    let private createAwardList (createAward: AwardDto -> Result<Award, AwardError list>) list = 
+    let private createAwardList (createAward: AwardDto -> Result<Award, AwardError list>) (list: AwardDto list) = 
         list 
-        |> List.map createAward 
+        |> List.map (fun x -> (x.Id, x |> createAward))
         |> List.fold processOneAward (Ok [])
     
     let create createUserId createUsername createAward (userDto: UserDto) = 
         createFromDomain 
        <!> (userDto.Id |> createUserId |> Ok) 
        <*> (createUsername userDto.Username |> Result.mapError (UserError.UsernameError >> List.wrap))
-       <*> (userDto.Awards |> createAwardList createAward |> Result.mapError (UserError.AwardListError >> List.wrap))
+       <*> (userDto.Awards |> createAwardList createAward |> Result.mapError (AwardListError >> List.wrap))
