@@ -3,6 +3,10 @@ module AwardLogic
 open Dto
 open UtilityTypes
 
-let getAwards createAward getAwardDtosFromDataSource = getAwardDtosFromDataSource() 
-                                                       |> List.map (fun x -> (x.Id, createAward x))
-                                                       |> Result.flattenList
+let get createAward (getAwardDtosFromDataSource: unit -> AwardDto list) = getAwardDtosFromDataSource 
+                                                                          >> List.map (fun x -> (x.Id, createAward x)) 
+                                                                          >> Result.flattenList
+                                                       
+let getById createAward getAwardFromDataSource = getAwardFromDataSource >> createAward
+
+let add toDto addAwardToDataSource = toDto >> addAwardToDataSource
