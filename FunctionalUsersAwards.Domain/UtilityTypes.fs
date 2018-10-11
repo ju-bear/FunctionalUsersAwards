@@ -25,10 +25,10 @@ module Result =
                     | Error err -> Error err
                     
     let private processOne accum value = match value |> snd with
-                                 | Ok v -> accum |> Result.map (fun x -> v :: x)
-                                 | Error err -> match accum with
-                                                | Ok _ -> [value |> fst, err] |> Error
-                                                | Error accumError -> [value |> fst, err] @ accumError |> Error
+                                         | Ok v -> accum |> Result.map (fun x -> v :: x)
+                                         | Error err -> match accum with
+                                                        | Ok _ -> [value |> fst, err] |> Error
+                                                        | Error accumError -> [value |> fst, err] @ accumError |> Error
                                                 
     let flattenList list = List.fold processOne (Ok []) list
     
