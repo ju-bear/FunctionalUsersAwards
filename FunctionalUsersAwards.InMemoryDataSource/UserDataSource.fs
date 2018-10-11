@@ -9,6 +9,12 @@ let getById id = Common.userMap |> Map.tryFind id
 let isUnique (user: UserDto) = Common.userMap 
                                |> Map.exists (fun _ value -> user.Username = value.Username)
                                |> not
+                               
+let delete id = if Common.userMap |> Map.containsKey id 
+                then Common.userMap <- Common.userMap |> Map.remove id
+                     Some id
+                else None
+                     
     
 let add (user: UserDto) = 
     if isUnique user 

@@ -12,6 +12,14 @@ let get createAward (getAwardDtosFromDataSource: unit -> AwardDto list) = getAwa
                                                        
 let getById createAward getAwardFromDataSource id = getAwardFromDataSource id |> Option.map createAward 
 
+let delete deleteFromDataSource hasUsers id =
+    let hasUsersResult = hasUsers id 
+    if hasUsersResult |> fst
+    then hasUsersResult |> snd |> AwardHasUsers |> Error 
+    else match deleteFromDataSource id with
+         | Some id -> Ok id
+         | None -> Error AwardWasNotFound
+
 let add toDto isUniqueInDataSource addAwardToDataSource award = 
     let awardDto = award |> toDto
     

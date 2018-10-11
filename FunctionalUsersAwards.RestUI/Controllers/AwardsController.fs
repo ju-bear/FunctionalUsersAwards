@@ -31,3 +31,9 @@ type AwardsController() =
                                                           | Ok dto -> this.Ok(award |> AwardRoot.toDto) :> IActionResult
                                                           | Error err -> this.Conflict(err) :> IActionResult
                                             | Error err -> this.Conflict(err) :> IActionResult
+                                            
+    [<Route("delete/{id}")>]
+    [<HttpDelete>]
+    member this.Delete(id) = match AwardLogicRoot.delete id with
+                             | Ok id -> this.Ok() :> IActionResult
+                             | Error err -> this.Conflict(err) :> IActionResult

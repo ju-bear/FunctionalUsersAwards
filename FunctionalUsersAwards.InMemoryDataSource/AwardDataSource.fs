@@ -9,6 +9,16 @@ let isUnique (award: AwardDto) = Common.awardMap
                                              |> Map.exists (fun _ value -> award.Title = value.Title)
                                              |> not
                                              
+let delete id = if Common.awardMap |> Map.containsKey id 
+                then Common.awardMap <- Common.awardMap |> Map.remove id
+                     Some id
+                else None 
+
+let hasUsers id = Common.userMap 
+                  |> Map.filter (fun key value -> value.Awards |> List.tryFind (fun x -> x.Id = id) |> Option.isSome)
+                  |> Map.toList
+                  |> (fun x -> List.length x > 0, x |> List.map (fun (u, y) -> u))
+                                             
 let areAwardsInDataSource (awards: AwardDto list) =
     let awardsGuids = awards |> List.map (fun x -> x.Id) 
     Common.awardMap

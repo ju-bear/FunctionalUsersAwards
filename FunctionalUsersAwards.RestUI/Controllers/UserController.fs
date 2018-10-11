@@ -32,4 +32,9 @@ type UserController() =
                                                    | Ok user -> this.Ok(user) :> IActionResult
                                                    | Error err -> this.Conflict(err) :> IActionResult
                                       | Error err -> this.Conflict(err) :> IActionResult
-                                         
+    
+    [<HttpDelete>]
+    [<Route("delete/{id}")>]
+    member this.Delete(id) = match UserLogicRoot.delete id with
+                             | Some id -> this.Ok() :> IActionResult
+                             | None -> this.NotFound() :> IActionResult
