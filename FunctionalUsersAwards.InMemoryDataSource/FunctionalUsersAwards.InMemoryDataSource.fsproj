@@ -5,7 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="Common.fs" />
+        <Compile Include="Common.fs" />
+        <Compile Include="AwardDataSource.fs" />
     </ItemGroup>
 
     <ItemGroup>
