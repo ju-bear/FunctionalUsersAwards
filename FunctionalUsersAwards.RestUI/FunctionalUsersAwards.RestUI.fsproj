@@ -6,12 +6,18 @@
 
   <ItemGroup>
     <Compile Include="Controllers/ValuesController.fs" />
+    <Compile Include="Controllers\AwardsController.fs" />
     <Compile Include="Startup.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FunctionalUsersAwards.DI\FunctionalUsersAwards.DI.fsproj" />
+    <ProjectReference Include="..\FunctionalUsersAwards.Domain\FunctionalUsersAwards.Domain.fsproj" />
   </ItemGroup>
 
 </Project>
