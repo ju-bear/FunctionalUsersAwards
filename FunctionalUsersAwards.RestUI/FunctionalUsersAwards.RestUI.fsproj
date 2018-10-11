@@ -7,7 +7,7 @@
   <ItemGroup>
     <Compile Include="Controllers/ValuesController.fs" />
     <Compile Include="Controllers\AwardsController.fs" />
-    <Compile Include="Controllers\UserController.fs" />
+    <Compile Include="Controllers\UsersController.fs" />
     <Compile Include="Startup.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

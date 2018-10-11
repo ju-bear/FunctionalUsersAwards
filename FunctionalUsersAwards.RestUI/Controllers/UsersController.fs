@@ -8,7 +8,7 @@ open Dto
 
 [<Route("api/users")>]
 [<ApiController>]
-type UserController() =
+type UsersController() =
     inherit ControllerBase()
     
     [<HttpGet>]
