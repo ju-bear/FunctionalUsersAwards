@@ -13,7 +13,7 @@ let get (getUsersFromDataSource: unit -> UserDto list) createUser = getUsersFrom
                                                                     
 let getById getUserFromDataSource createUser id = getUserFromDataSource id |> Option.map createUser
 
-let add toDto isUniqueInDataSource areAwardsInDataSource addToDataSource (user: User) = 
+let add (toDto: User -> UserDto) isUniqueInDataSource areAwardsInDataSource addToDataSource (user: User) = 
     let userDto = user |> toDto
     if isUniqueInDataSource userDto
     then 
