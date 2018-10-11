@@ -1,3 +1,3 @@
 module LogicValidation
 
-type AwardLogicError = AwardAlreadyExists
+type AwardLogicError = AwardAlreadyExists | DataSourceError of string
