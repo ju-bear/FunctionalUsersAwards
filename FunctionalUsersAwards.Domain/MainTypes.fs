@@ -29,21 +29,10 @@ module User =
 
     let createFromDomain validate id username awards = validate { Id = id; Username = username; Awards = awards }
     
-    let private processOneAward accum value = match value |> snd with
-                                              | Ok v -> accum |> Result.map (fun x -> v :: x)
-                                              | Error err -> match accum with
-                                                             | Ok _ -> [value |> fst, err] |> Error
-                                                             | Error accumError -> [value |> fst, err] @ accumError |> Error
-                                                                        
-    let private createAwardList (createAward: AwardDto -> Result<Award, AwardError list>) (list: AwardDto list) = 
-        list 
-        |> List.map (fun x -> (x.Id, x |> createAward))
-        |> List.fold processOneAward (Ok [])
-    
     let create validateUser createUserId createUsername createAward (userDto: UserDto) = 
         createFromDomain validateUser
        <!> (userDto.Id |> createUserId |> Ok) 
        <*> (createUsername userDto.Username |> Result.mapError (UserError.UsernameError >> List.wrap))
-       <*> (userDto.Awards |> createAwardList createAward |> Result.mapError (AwardListError >> List.wrap))
+       <*> (userDto.Awards |> List.map (fun x -> (x.Id, x |> createAward)) |> Result.flattenList |> Result.mapError (AwardListError >> List.wrap))
        |> Result.map (Result.mapError List.wrap)
        |> Result.flatten
