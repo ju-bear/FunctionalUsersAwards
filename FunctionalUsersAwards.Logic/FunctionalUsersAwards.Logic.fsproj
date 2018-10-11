@@ -5,7 +5,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Include="LogicValidation.fs" />
       <Compile Include="AwardLogic.fs" />
+      <Compile Include="UserLogic.fs" />
     </ItemGroup>
 
     <ItemGroup>
