@@ -15,4 +15,8 @@ module UserRoot =
     let createDefaultUsername = Username.create (Username.validate maxUsernameLength)
     let createDefaultUser = User.create User.validateUser createDefaultUserId createDefaultUsername AwardRoot.createDefaultAward
     let toDto = User.toDto AwardRoot.toDto
-
+    
+module AwardLogicRoot =
+    let get = AwardLogic.get AwardRoot.createDefaultAward AwardDataSource.get
+    let getById = AwardLogic.getById AwardRoot.createDefaultAward AwardDataSource.getById
+    let add = AwardLogic.add AwardRoot.toDto AwardDataSource.isUnique AwardDataSource.add
