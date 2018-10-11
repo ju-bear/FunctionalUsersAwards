@@ -6,11 +6,11 @@ open Option
 
 let get createAward (getAwardDtosFromDataSource: unit -> AwardDto list option) = getAwardDtosFromDataSource() 
                                                                                   |> Option.map (List.map (fun x -> (x.Id, createAward x)) 
-                                                                                                 >> Result.flattenList >> Some)
+                                                                                                 >> Result.flattenList)
                                                        
 let getById createAward getAwardFromDataSource id = getAwardFromDataSource id |> Option.map createAward 
 
 let add toDto isUniqueInDataSource addAwardToDataSource award = award 
                                                                 |> toDto 
                                                                 |> isUniqueInDataSource 
-                                                                >>= (addAwardToDataSource >> Some)
+                                                                >>= addAwardToDataSource
