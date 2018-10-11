@@ -3,6 +3,8 @@ module AwardLogic
 open Dto
 open UtilityTypes
 open Option
+open Result
+open LogicValidation
 
 let get createAward (getAwardDtosFromDataSource: unit -> AwardDto list) = getAwardDtosFromDataSource 
                                                                           >> List.map (fun x -> (x.Id, createAward x)) 
@@ -10,7 +12,9 @@ let get createAward (getAwardDtosFromDataSource: unit -> AwardDto list) = getAwa
                                                        
 let getById createAward getAwardFromDataSource id = getAwardFromDataSource id |> Option.map createAward 
 
-let add toDto isUniqueInDataSource addAwardToDataSource award = award 
-                                                                |> toDto 
-                                                                |> isUniqueInDataSource 
-                                                                >>= addAwardToDataSource
+let add toDto isUniqueInDataSource addAwardToDataSource award = 
+    let awardDto = award |> toDto
+    
+    if isUniqueInDataSource awardDto
+    then addAwardToDataSource awardDto |> Result.mapError DataSourceError
+    else Error AwardAlreadyExists  
