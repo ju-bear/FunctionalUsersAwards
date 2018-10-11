@@ -4,4 +4,12 @@
         <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Include="Common.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FunctionalUsersAwards.Domain\FunctionalUsersAwards.Domain.fsproj" />
+    </ItemGroup>
+
 </Project>
