@@ -12,5 +12,5 @@ module UserRoot =
     let maxUsernameLength = 55
     let createDefaultUserId = UserId.createWithValue
     let createDefaultUsername = Username.create (Username.validate maxUsernameLength)
-    let createDefaultUser = User.create createDefaultUserId createDefaultUsername AwardRoot.createDefaultAward
+    let createDefaultUser = User.create User.validateUser createDefaultUserId createDefaultUsername AwardRoot.createDefaultAward
 

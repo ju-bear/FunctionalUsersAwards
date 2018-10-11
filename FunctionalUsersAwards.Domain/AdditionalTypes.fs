@@ -14,7 +14,7 @@ type UserId = UserId of Guid
 
 type UsernameError = UsernameEmptyError | UsernameTooLongError of int 
 
-type UserError<'a> = UsernameError of UsernameError | AwardListError of ('a * AwardError list) list
+type UserError = UsernameError of UsernameError | AwardListError of (Guid * AwardError list) list | AwardsMustBeDistinctError
 
 module AwardId = 
     let create() = Guid.NewGuid >> AwardId

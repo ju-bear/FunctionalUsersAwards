@@ -23,7 +23,11 @@ type User = {
 }
 
 module User = 
-    let createFromDomain id username awards = { Id = id; Username = username; Awards = awards }
+    let validateUser (user: User) = if user.Awards |> List.distinctBy (fun x -> x.Title) = user.Awards
+                                    then Ok user
+                                    else Error (AwardsMustBeDistinctError)
+
+    let createFromDomain validate id username awards = validate { Id = id; Username = username; Awards = awards }
     
     let private processOneAward accum value = match value |> snd with
                                               | Ok v -> accum |> Result.map (fun x -> v :: x)
@@ -36,8 +40,10 @@ module User =
         |> List.map (fun x -> (x.Id, x |> createAward))
         |> List.fold processOneAward (Ok [])
     
-    let create createUserId createUsername createAward (userDto: UserDto) = 
-        createFromDomain 
+    let create validateUser createUserId createUsername createAward (userDto: UserDto) = 
+        createFromDomain validateUser
        <!> (userDto.Id |> createUserId |> Ok) 
        <*> (createUsername userDto.Username |> Result.mapError (UserError.UsernameError >> List.wrap))
        <*> (userDto.Awards |> createAwardList createAward |> Result.mapError (AwardListError >> List.wrap))
+       |> Result.map (Result.mapError List.wrap)
+       |> Result.flatten
