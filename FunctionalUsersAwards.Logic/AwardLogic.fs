@@ -2,6 +2,7 @@ module AwardLogic
 
 open Dto
 open UtilityTypes
+open Option
 
 let get createAward (getAwardDtosFromDataSource: unit -> AwardDto list) = getAwardDtosFromDataSource 
                                                                           >> List.map (fun x -> (x.Id, createAward x)) 
@@ -9,4 +10,7 @@ let get createAward (getAwardDtosFromDataSource: unit -> AwardDto list) = getAwa
                                                        
 let getById createAward getAwardFromDataSource = getAwardFromDataSource >> createAward
 
-let add toDto addAwardToDataSource = toDto >> addAwardToDataSource
+let add toDto isUniqueInDataSource addAwardToDataSource award = award 
+                                                                |> toDto 
+                                                                |> isUniqueInDataSource 
+                                                                >>= (addAwardToDataSource >> Some)
