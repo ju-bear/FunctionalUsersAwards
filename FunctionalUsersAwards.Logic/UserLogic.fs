@@ -19,7 +19,7 @@ let add (toDto: User -> UserDto) isUniqueInDataSource areAwardsInDataSource addT
     let userDto = user |> toDto
     if isUniqueInDataSource userDto
     then 
-        let areAwardsInDataSourceResult = areAwardsInDataSource userDto.Awards
+        let areAwardsInDataSourceResult = userDto.Awards |> List.map (fun x -> x.Id) |> areAwardsInDataSource 
         if areAwardsInDataSourceResult |> fst 
         then addToDataSource userDto |> Result.mapError UserLogicError.DataSourceError
         else areAwardsInDataSourceResult |> snd |> SomeAwardsAreNotInDataSource |> Error

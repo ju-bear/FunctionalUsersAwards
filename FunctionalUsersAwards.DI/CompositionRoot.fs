@@ -20,10 +20,13 @@ module AwardLogicRoot =
     let get = AwardLogic.get AwardRoot.createAward AwardDataSource.get
     let getById = AwardLogic.getById AwardRoot.createAward AwardDataSource.getById
     let add = AwardLogic.add AwardRoot.toDto AwardDataSource.isUnique AwardDataSource.add
-    let delete = AwardLogic.delete AwardDataSource.delete AwardDataSource.hasUsers
+    let delete = AwardLogic.delete AwardDataSource.delete UserAwardDataSource.hasUsers
     
 module UserLogicRoot =
     let get = UserLogic.get UserDataSource.get UserRoot.createUser
     let getById = UserLogic.getById UserDataSource.getById UserRoot.createUser
     let add = UserLogic.add UserRoot.toDto UserDataSource.isUnique AwardDataSource.areAwardsInDataSource UserDataSource.add
     let delete = UserLogic.delete UserDataSource.delete
+    
+module UserAwardLogicRoot =
+    let addAwardsToUser = UserAwardLogic.addAwardToUser UserAwardDataSource.addAwardsToUser

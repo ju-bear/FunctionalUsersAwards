@@ -5,3 +5,5 @@ open System
 type AwardLogicError = AwardAlreadyExists | DataSourceError of string | AwardHasUsers of Guid list | AwardWasNotFound
 
 type UserLogicError = UserAlreadyExists | SomeAwardsAreNotInDataSource of Guid list | DataSourceError of string
+
+type UserAwardLogicError = DataSourceError of string
