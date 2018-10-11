@@ -16,5 +16,5 @@ let add toDto isUniqueInDataSource addAwardToDataSource award =
     let awardDto = award |> toDto
     
     if isUniqueInDataSource awardDto
-    then addAwardToDataSource awardDto |> Result.mapError DataSourceError
-    else Error AwardAlreadyExists  
+    then addAwardToDataSource awardDto |> Result.mapError AwardLogicError.DataSourceError
+    else Error AwardAlreadyExists
