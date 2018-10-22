@@ -7,8 +7,8 @@
     <ItemGroup>
         <Compile Include="Common.fs" />
         <Compile Include="AwardDataSource.fs" />
-        <Compile Include="UserAwardDataSource.fs" />
         <Compile Include="UserDataSource.fs" />
+        <Compile Include="UserAwardDataSource.fs" />
     </ItemGroup>
 
     <ItemGroup>

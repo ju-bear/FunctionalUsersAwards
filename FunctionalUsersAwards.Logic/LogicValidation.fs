@@ -6,4 +6,4 @@ type AwardLogicError = AwardAlreadyExists | DataSourceError of string | AwardHas
 
 type UserLogicError = UserAlreadyExists | SomeAwardsAreNotInDataSource of Guid list | DataSourceError of string
 
-type UserAwardLogicError = DataSourceError of string
+type UserAwardLogicError = UserNotInDataSource of Guid | SomeAwardsAreNotInDataSource of Guid list | DataSourceError of string

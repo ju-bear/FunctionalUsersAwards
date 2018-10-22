@@ -29,4 +29,4 @@ module UserLogicRoot =
     let delete = UserLogic.delete UserDataSource.delete
     
 module UserAwardLogicRoot =
-    let addAwardsToUser = UserAwardLogic.addAwardToUser UserAwardDataSource.addAwardsToUser
+    let addAwardsToUser = UserAwardLogic.addAwardToUser UserAwardDataSource.addAwardsToUser UserDataSource.exists AwardDataSource.areAwardsInDataSource

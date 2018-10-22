@@ -20,6 +20,9 @@ module Result =
                     | Error f, Error s -> Error (f @ s)
     let (<*>) f s = apply f s
     let (<!>) f s = Result.map f s
+    
+    let boolToResult okValue errorValue b = if b then okValue |> Ok else errorValue |> Error 
+    
     let flatten v = match v with
                     | Ok res -> res
                     | Error err -> Error err
@@ -31,6 +34,13 @@ module Result =
                                                         | Error accumError -> [value |> fst, err] @ accumError |> Error
                                                 
     let flattenList list = List.fold processOne (Ok []) list
+    
+    type ResultBuilder() =
+        member x.Bind(s, f) = Result.bind f s
+        member x.Return(v) = Ok v
+        member x.ReturnFrom(v) = v
+    
+    let resultBuilder = new ResultBuilder() 
     
 module Option = 
     let (>>=) s f = Option.bind f s
