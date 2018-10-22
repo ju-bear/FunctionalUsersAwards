@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FunctionalUsersAwards.Domain\FunctionalUsersAwards.Domain.fsproj" />
+      <ProjectReference Include="..\FunctionalUsersAwards.EfContext\FunctionalUsersAwards.EfContext.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="Common.fs" />
+      <Compile Include="AwardDataSource.fs" />
+    </ItemGroup>
+
+</Project>

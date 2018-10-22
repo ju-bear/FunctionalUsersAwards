@@ -1,5 +1,7 @@
 namespace FunctionalUsersAwards.RestUI
 
+open CompositionRoot
+open FunctionalUsersAwards.EfContext
 open System
 open System.Collections.Generic
 open System.Linq
@@ -10,6 +12,7 @@ open Microsoft.AspNetCore.HttpsPolicy;
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
+open Microsoft.EntityFrameworkCore
 
 type Startup private () =
     new (configuration: IConfiguration) as this =
@@ -20,6 +23,8 @@ type Startup private () =
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
         services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1) |> ignore
+        let optsBuilder = new DbContextOptionsBuilder()
+        DataSourceRoot.getContext <- (fun() -> new UserAwardDbContext(optsBuilder.UseSqlServer(this.Configuration.GetConnectionString "Default").Options))
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     member this.Configure(app: IApplicationBuilder, env: IHostingEnvironment) =

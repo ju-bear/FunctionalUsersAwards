@@ -2,6 +2,7 @@ namespace FunctionalUsersAwards.Controllers
 open System
 open CompositionRoot
 open Dto
+open FunctionalUsersAwards.EfContext
 open Microsoft.AspNetCore.Mvc
 
 [<Route("api/awards")>]

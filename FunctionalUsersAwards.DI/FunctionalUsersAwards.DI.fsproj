@@ -10,6 +10,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FunctionalUsersAwards.Domain\FunctionalUsersAwards.Domain.fsproj" />
+      <ProjectReference Include="..\FunctionalUsersAwards.EfContext\FunctionalUsersAwards.EfContext.csproj" />
+      <ProjectReference Include="..\FunctionalUsersAwards.EfDataSource\FunctionalUsersAwards.EfDataSource.fsproj" />
       <ProjectReference Include="..\FunctionalUsersAwards.InMemoryDataSource\FunctionalUsersAwards.InMemoryDataSource.fsproj" />
       <ProjectReference Include="..\FunctionalUsersAwards.Logic\FunctionalUsersAwards.Logic.fsproj" />
     </ItemGroup>

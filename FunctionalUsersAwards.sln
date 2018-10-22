@@ -12,6 +12,12 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunctionalUsersAwards.InMem
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunctionalUsersAwards.RestUI", "FunctionalUsersAwards.RestUI\FunctionalUsersAwards.RestUI.fsproj", "{4D9367A1-B630-45A7-BBB3-C7DB0F27177F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalUsersAwards.EfContext", "FunctionalUsersAwards.EfContext\FunctionalUsersAwards.EfContext.csproj", "{6C2E0E98-378E-430E-8FED-AC69DC04EE90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalUsersAwards.EfMigrations", "FunctionalUsersAwards.EfMigrations\FunctionalUsersAwards.EfMigrations.csproj", "{186C0776-88F9-4C9A-82FE-CB13A48CC36C}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FunctionalUsersAwards.EfDataSource", "FunctionalUsersAwards.EfDataSource\FunctionalUsersAwards.EfDataSource.fsproj", "{F9EEB128-ED88-48F4-8031-0333226B0B7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +48,17 @@ Global
 		{4D9367A1-B630-45A7-BBB3-C7DB0F27177F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D9367A1-B630-45A7-BBB3-C7DB0F27177F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D9367A1-B630-45A7-BBB3-C7DB0F27177F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C2E0E98-378E-430E-8FED-AC69DC04EE90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C2E0E98-378E-430E-8FED-AC69DC04EE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C2E0E98-378E-430E-8FED-AC69DC04EE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C2E0E98-378E-430E-8FED-AC69DC04EE90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{186C0776-88F9-4C9A-82FE-CB13A48CC36C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{186C0776-88F9-4C9A-82FE-CB13A48CC36C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{186C0776-88F9-4C9A-82FE-CB13A48CC36C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{186C0776-88F9-4C9A-82FE-CB13A48CC36C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9EEB128-ED88-48F4-8031-0333226B0B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9EEB128-ED88-48F4-8031-0333226B0B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9EEB128-ED88-48F4-8031-0333226B0B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9EEB128-ED88-48F4-8031-0333226B0B7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
