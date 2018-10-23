@@ -20,17 +20,18 @@ module UserRoot =
     let toDto = User.toDto AwardRoot.toDto
     
 module DataSourceRoot =
-    let mutable getContext = Unchecked.defaultof<unit -> UserAwardDbContext>    
+    let mutable opts = lazy Unchecked.defaultof<DbContextOptions>
+    let getContext() = new UserAwardDbContext(opts.Force())
     
 module AwardDataSourceRoot =
     open FunctionalUsersAwards.EfContext
-
-    let add = FunctionalUsersAwards.EfDataSource.AwardDataSource.add (lazy DataSourceRoot.getContext)
-    let get = FunctionalUsersAwards.EfDataSource.AwardDataSource.get (lazy DataSourceRoot.getContext)
-    let getById = FunctionalUsersAwards.EfDataSource.AwardDataSource.getById (lazy DataSourceRoot.getContext)
-    let isUnique = FunctionalUsersAwards.EfDataSource.AwardDataSource.isUnique (lazy DataSourceRoot.getContext)
-    let delete = FunctionalUsersAwards.EfDataSource.AwardDataSource.delete (lazy DataSourceRoot.getContext)
-    let areAwardsInDataSource = FunctionalUsersAwards.EfDataSource.AwardDataSource.areAwardsInDataSource (lazy DataSourceRoot.getContext)
+    
+    let add = FunctionalUsersAwards.EfDataSource.AwardDataSource.add DataSourceRoot.getContext
+    let get = FunctionalUsersAwards.EfDataSource.AwardDataSource.get DataSourceRoot.getContext
+    let getById = FunctionalUsersAwards.EfDataSource.AwardDataSource.getById DataSourceRoot.getContext
+    let isUnique = FunctionalUsersAwards.EfDataSource.AwardDataSource.isUnique DataSourceRoot.getContext
+    let delete = FunctionalUsersAwards.EfDataSource.AwardDataSource.delete DataSourceRoot.getContext
+    let areAwardsInDataSource = FunctionalUsersAwards.EfDataSource.AwardDataSource.areAwardsInDataSource DataSourceRoot.getContext
         
 module AwardLogicRoot =
     let get = AwardLogic.get AwardRoot.createAward AwardDataSourceRoot.get

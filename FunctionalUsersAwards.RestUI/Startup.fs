@@ -24,7 +24,7 @@ type Startup private () =
         // Add framework services.
         services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1) |> ignore
         let optsBuilder = new DbContextOptionsBuilder()
-        DataSourceRoot.getContext <- (fun() -> new UserAwardDbContext(optsBuilder.UseSqlServer(this.Configuration.GetConnectionString "Default").Options))
+        DataSourceRoot.opts <- lazy optsBuilder.UseSqlServer(this.Configuration.GetConnectionString "Default").Options
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     member this.Configure(app: IApplicationBuilder, env: IHostingEnvironment) =
