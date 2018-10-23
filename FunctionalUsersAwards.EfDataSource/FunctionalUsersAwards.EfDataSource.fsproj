@@ -12,6 +12,8 @@
     <ItemGroup>
       <Compile Include="Common.fs" />
       <Compile Include="AwardDataSource.fs" />
+      <Compile Include="UserAwardDataSource.fs" />
+      <Compile Include="UserDataSource.fs" />
     </ItemGroup>
 
 </Project>

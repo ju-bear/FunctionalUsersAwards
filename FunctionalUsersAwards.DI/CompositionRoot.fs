@@ -24,26 +24,36 @@ module DataSourceRoot =
     let getContext() = new UserAwardDbContext(opts.Force())
     
 module AwardDataSourceRoot =
-    open FunctionalUsersAwards.EfContext
-    
     let add = FunctionalUsersAwards.EfDataSource.AwardDataSource.add DataSourceRoot.getContext
     let get = FunctionalUsersAwards.EfDataSource.AwardDataSource.get DataSourceRoot.getContext
     let getById = FunctionalUsersAwards.EfDataSource.AwardDataSource.getById DataSourceRoot.getContext
     let isUnique = FunctionalUsersAwards.EfDataSource.AwardDataSource.isUnique DataSourceRoot.getContext
     let delete = FunctionalUsersAwards.EfDataSource.AwardDataSource.delete DataSourceRoot.getContext
     let areAwardsInDataSource = FunctionalUsersAwards.EfDataSource.AwardDataSource.areAwardsInDataSource DataSourceRoot.getContext
+    
+module UserDataSourceRoot =
+    let get = FunctionalUsersAwards.EfDataSource.UserDataSource.get DataSourceRoot.getContext
+    let getById = FunctionalUsersAwards.EfDataSource.UserDataSource.getById DataSourceRoot.getContext
+    let isUnique = FunctionalUsersAwards.EfDataSource.UserDataSource.isUnique DataSourceRoot.getContext
+    let exists = FunctionalUsersAwards.EfDataSource.UserDataSource.exists DataSourceRoot.getContext
+    let delete = FunctionalUsersAwards.EfDataSource.UserDataSource.delete DataSourceRoot.getContext
+    let add = FunctionalUsersAwards.EfDataSource.UserDataSource.add DataSourceRoot.getContext
+    
+module UserAwardDataSourceRoot =
+    let hasUsers = FunctionalUsersAwards.EfDataSource.UserAwardDataSource.hasUsers DataSourceRoot.getContext
+    let addAwardsToUsers = FunctionalUsersAwards.EfDataSource.UserAwardDataSource.addAwardsToUser DataSourceRoot.getContext
         
 module AwardLogicRoot =
     let get = AwardLogic.get AwardRoot.createAward AwardDataSourceRoot.get
     let getById = AwardLogic.getById AwardRoot.createAward AwardDataSourceRoot.getById
     let add = AwardLogic.add AwardRoot.toDto AwardDataSourceRoot.isUnique AwardDataSourceRoot.add
-    let delete = AwardLogic.delete AwardDataSourceRoot.delete UserAwardDataSource.hasUsers
+    let delete = AwardLogic.delete AwardDataSourceRoot.delete UserAwardDataSourceRoot.hasUsers
     
 module UserLogicRoot =
-    let get = UserLogic.get UserDataSource.get UserRoot.createUser
-    let getById = UserLogic.getById UserDataSource.getById UserRoot.createUser
-    let add = UserLogic.add UserRoot.toDto UserDataSource.isUnique AwardDataSource.areAwardsInDataSource UserDataSource.add
-    let delete = UserLogic.delete UserDataSource.delete
+    let get = UserLogic.get UserDataSourceRoot.get UserRoot.createUser
+    let getById = UserLogic.getById UserDataSourceRoot.getById UserRoot.createUser
+    let add = UserLogic.add UserRoot.toDto UserDataSourceRoot.isUnique AwardDataSourceRoot.areAwardsInDataSource UserDataSourceRoot.add
+    let delete = UserLogic.delete UserDataSourceRoot.delete
     
 module UserAwardLogicRoot =
-    let addAwardsToUser = UserAwardLogic.addAwardToUser UserAwardDataSource.addAwardsToUser UserDataSource.exists AwardDataSource.areAwardsInDataSource
+    let addAwardsToUser = UserAwardLogic.addAwardToUser UserAwardDataSourceRoot.addAwardsToUsers UserDataSourceRoot.exists AwardDataSourceRoot.areAwardsInDataSource
